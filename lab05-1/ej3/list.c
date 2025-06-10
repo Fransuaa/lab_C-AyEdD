@@ -12,8 +12,7 @@ typedef struct Node {
 
 //constructores
 list empty(){
-	list res=NULL;
-	return res;
+	return NULL;
 }
 
 list addl(list l, list_elem e){
@@ -35,7 +34,7 @@ void destroy(list l){
 
 //operaciones
 bool is_empty(list l){
-	return (l==NULL);
+	return l==empty();
 }
 
 list_elem head(list l){
@@ -69,7 +68,9 @@ list addr(list l, list_elem e){
 	}
 	else{
 		l=q;
-	} 
+	}
+	p=NULL;
+	q=NULL; 
 
 	return l;
 }
@@ -108,7 +109,7 @@ list concat(list l0, list l1){
 
 list_elem index(list l, unsigned int n){
 	assert(!is_empty(l));
-	assert(n<length(l));
+	assert(length(l)>n);
 
 	list_elem elem_n;
 	unsigned int i=0;
@@ -135,6 +136,7 @@ list take(list l, unsigned int n){
 		++i;
 	}
 	free(p->next);
+	p->next=NULL;
 	p=NULL;
 
 	return l;
@@ -160,5 +162,3 @@ list drop(list l, unsigned int n){
 list copy_list(list l){
 	return l;
 }
-
-
